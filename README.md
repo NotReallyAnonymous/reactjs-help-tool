@@ -1,8 +1,24 @@
-# React + Vite
+# React + Vite Copy Button Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small React + Vite starter showcasing a reusable copy-to-clipboard button component.
 
-Currently, two official plugins are available:
+## Getting started
+
+Install dependencies before running the dev server:
+
+```bash
+npm install
+```
+
+Then start the app:
+
+```bash
+npm run dev
+```
+
+## Vite + React notes
+
+Two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
