@@ -1,40 +1,76 @@
 import { useState } from 'react'
-import CopyButton from './components/CopyButton'
+import Command from './components/Command'
+import SelectBox from './components/SelectBox'
+import TextBox from './components/TextBox'
 import './App.css'
 
+const packageOptions = ['discord', 'firefox', 'neovim', 'ripgrep']
+const runtimeOptions = ['node', 'python', 'deno']
+
 function App() {
-  const [text, setText] = useState('This is some text to copy')
+  const [packageName, setPackageName] = useState('discord')
+  const [selectedPackage, setSelectedPackage] = useState('firefox')
+  const [projectName, setProjectName] = useState('my-app')
+  const [runtime, setRuntime] = useState('node')
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Copy Button Demo</h1>
-        <p>Use the reusable component to copy any text value.</p>
+        <h1>Command Component</h1>
+        <p>Try inputs and dropdowns to see commands update automatically.</p>
       </header>
 
       <main className="app-content">
-        <label className="text-label" htmlFor="copy-text">
-          Text to copy
-        </label>
-        <textarea
-          id="copy-text"
-          className="text-input"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          rows={4}
-        />
+        <Command
+          title="Example 1: Package name input"
+          description="Type a package name to update the command and copy button."
+          command={`sudo pacman -S ${packageName || '<packageName>'}`}
+        >
+          <TextBox
+            id="package-name"
+            header="Package name"
+            value={packageName}
+            onChange={(event) => setPackageName(event.target.value)}
+            placeholder="discord"
+          />
+        </Command>
 
-        <div className="button-row">
-          <CopyButton text={text} label="Copy text" />
-          <span className="helper-text">Current length: {text.length} characters</span>
-        </div>
+        <Command
+          title="Example 2: Package dropdown"
+          description="Select an option to update the command and copy button."
+          command={`sudo pacman -S ${selectedPackage}`}
+        >
+          <SelectBox
+            id="package-option"
+            header="Package"
+            value={selectedPackage}
+            onChange={(event) => setSelectedPackage(event.target.value)}
+            options={packageOptions}
+          />
+        </Command>
 
-        <section className="example">
-          <h2>Usage</h2>
-          <pre>
-            <code>{'<CopyButton text="This is some text to copy" />'}</code>
-          </pre>
-        </section>
+        <Command
+          title="Example 3: Project bootstrap"
+          description="Combine a runtime dropdown with a project name input."
+          command={`npx create-${runtime}-app ${projectName || '<projectName>'}`}
+        >
+          <div className="field-row">
+            <TextBox
+              id="project-name"
+              header="Project name"
+              value={projectName}
+              onChange={(event) => setProjectName(event.target.value)}
+              placeholder="my-app"
+            />
+            <SelectBox
+              id="runtime-option"
+              header="Runtime"
+              value={runtime}
+              onChange={(event) => setRuntime(event.target.value)}
+              options={runtimeOptions}
+            />
+          </div>
+        </Command>
       </main>
     </div>
   )

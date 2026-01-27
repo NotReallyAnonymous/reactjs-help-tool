@@ -30,41 +30,113 @@
 }
 
 .app-content {
-  width: min(720px, 100%);
+  width: min(880px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.example-card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.75rem;
   box-shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.text-label {
-  font-weight: 600;
+.example-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.text-input {
-  width: 100%;
+.example-header h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.example-header p {
+  margin: 0;
+  color: #52606d;
+}
+
+.example-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #1f2933;
+}
+
+.field span {
+  font-size: 0.9rem;
+}
+
+.field input,
+.field select {
   border-radius: 12px;
   border: 1px solid #d9e2ec;
-  padding: 1rem;
+  padding: 0.7rem 0.85rem;
   font-size: 1rem;
-  resize: vertical;
-  min-height: 120px;
   background: #f8fafc;
 }
 
-.text-input:focus {
+.field input:focus,
+.field select:focus {
   outline: 2px solid #8b5cf6;
   border-color: #8b5cf6;
   background: #ffffff;
 }
 
-.button-row {
+.command {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
+}
+
+.command-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.command-header h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.command-header p {
+  margin: 0;
+  color: #52606d;
+}
+
+.command-block {
+  margin: 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  overflow-x: auto;
+}
+
+.command-block code {
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 .copy-button {
@@ -88,31 +160,26 @@
   transform: translateY(0);
 }
 
-.helper-text {
-  color: #52606d;
-  font-size: 0.95rem;
-}
+@media (min-width: 720px) {
+  .example-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.example {
-  background: #0f172a;
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
-  color: #e2e8f0;
-}
+  .example-controls {
+    align-items: flex-end;
+  }
 
-.example h2 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.1rem;
-}
+  .field-row {
+    flex-direction: row;
+  }
 
-.example code {
-  font-family: 'Fira Code', ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
+  .field {
+    min-width: 200px;
+  }
 
-@media (min-width: 640px) {
-  .button-row {
+  .command-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
