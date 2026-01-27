@@ -1,10 +1,25 @@
 import CopyButton from './CopyButton'
 
-function Command({ title, description, command, children }) {
+function Command({
+  title,
+  description,
+  command,
+  children,
+  tabLabel,
+  className,
+  layout = 'card',
+}) {
   const commandText = command ? String(command) : ''
+  const containerClassName = [
+    layout === 'card' ? 'example-card' : 'command-panel',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+  const Container = layout === 'card' ? 'section' : 'div'
 
   return (
-    <section className="example-card">
+    <Container className={containerClassName} data-tab-label={tabLabel}>
       <div className="example-header">
         <div>
           <h2>{title}</h2>
@@ -24,7 +39,7 @@ function Command({ title, description, command, children }) {
           <code>{commandText}</code>
         </pre>
       </div>
-    </section>
+    </Container>
   )
 }
 
