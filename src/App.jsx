@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Command from './components/Command'
 import CommandTabs from './components/CommandTabs'
+import FlagCheckBox from './components/FlagCheckBox'
 import SelectBox from './components/SelectBox'
 import TextBox from './components/TextBox'
 import './App.css'
@@ -13,6 +14,8 @@ function App() {
   const [selectedPackage, setSelectedPackage] = useState('firefox')
   const [projectName, setProjectName] = useState('my-app')
   const [runtime, setRuntime] = useState('node')
+  const [pingHost, setPingHost] = useState('127.0.0.1')
+  const [isContinuousPing, setIsContinuousPing] = useState(false)
 
   return (
     <div className="app">
@@ -92,6 +95,31 @@ function App() {
               value={runtime}
               onChange={(event) => setRuntime(event.target.value)}
               options={runtimeOptions}
+            />
+          </div>
+        </Command>
+
+        <Command
+          title="Example 4: Optional command flags"
+          description="Toggle a flag to add it to the command."
+          command={`ping${isContinuousPing ? ' -t' : ''} ${
+            pingHost || '<ip or hostname>'
+          }`}
+        >
+          <div className="field-row">
+            <TextBox
+              id="ping-host"
+              header="Ping target"
+              value={pingHost}
+              onChange={(event) => setPingHost(event.target.value)}
+              placeholder="127.0.0.1"
+            />
+            <FlagCheckBox
+              id="continuous-ping"
+              header="Continuous ping"
+              flag="-t"
+              checked={isContinuousPing}
+              onChange={(event) => setIsContinuousPing(event.target.checked)}
             />
           </div>
         </Command>
