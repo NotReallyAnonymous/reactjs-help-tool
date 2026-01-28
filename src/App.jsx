@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Command from './components/Command'
+import CommandTabs from './components/CommandTabs'
 import SelectBox from './components/SelectBox'
 import TextBox from './components/TextBox'
 import './App.css'
@@ -21,6 +22,29 @@ function App() {
       </header>
 
       <main className="app-content">
+        <CommandTabs
+          title="Example 0: Multi-platform commands"
+          description="Pick an operating system to see the right install command."
+        >
+          <Command
+            tabLabel="Windows"
+            title="Windows Command"
+            description="Use Winget to install the package."
+            command="winget install BurntSushi.ripgrep"
+          />
+          <Command
+            tabLabel="PowerShell"
+            title="PowerShell Command"
+            description="Install with PowerShellGet."
+            command="Install-Module -Name ripgrep"
+          />
+          <Command
+            tabLabel="Linux"
+            title="Linux Command"
+            description="Install via apt on Debian-based systems."
+            command="sudo apt install ripgrep"
+          />
+        </CommandTabs>
         <Command
           title="Example 1: Package name input"
           description="Type a package name to update the command and copy button."
